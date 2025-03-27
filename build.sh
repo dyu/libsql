@@ -20,15 +20,13 @@ fi
 
 cd $SCRIPT_DIR
 
-cargo_build() {
-  echo "Building example: $1"
-  cargo build --release --example $1
+build_example() {
+    echo "Building example: $1"
+    cargo build --release --example $1
 }
 
 build_examples() {
-  for F in $@; do
-  cargo_build "${F%.*}"
-  done
+    for F in $@; do build_example "${F%.*}"; done
 }
 
 cargo build --release && build_examples `ls libsql/examples`
