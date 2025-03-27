@@ -52,6 +52,7 @@ zerocopy = { version = "0.7.32", features = ["derive", "alloc"] }
 [profile.release]
 codegen-units = 1
 panic = "unwind"
+lto = "thin"
 
 # Config for 'cargo dist'
 [workspace.metadata.dist]
