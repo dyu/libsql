@@ -21,12 +21,16 @@ fi
 cd $SCRIPT_DIR
 
 build_example() {
-    echo "Building example: $1"
-    cargo build --release --example $1
+    printf "\n$1:\n"
+    cargo build --release --example $1 && \
+    du -sh target/release/examples/$1
 }
 
 build_examples() {
     for F in $@; do build_example "${F%.*}"; done
 }
 
-cargo build --release && build_examples `ls libsql/examples`
+cargo build --release && \
+du -sh target/release/sqld && \
+du -sh target/release/bottomless-cli && \
+build_examples `ls libsql/examples`
